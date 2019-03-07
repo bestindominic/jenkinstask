@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  connection: local
+
+  vars:
+  - docker_tag: "{{ docker_image_tag }}"
+
+  tasks:
+  - name: jenkinstask build | Build Docker
+    shell: docker build . -t {{ docker_tag }}
+    args:
+    delegate_to: 127.0.0.1
+    run_once: true
+
